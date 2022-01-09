@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react';
+import Header from "./components/Header";
+import FeedbackData from './data/FeedbackData'
+import FeedbackList from './components/FeedbackList'
 
-function App() {
+export default function App() {
+  const [feedback] = useState(FeedbackData)
+  const [trueOrFalse, setTrueOrFalse] = useState(true)
+
+  const handleClick = () => {
+    if(trueOrFalse === true){
+      setTrueOrFalse(false)
+    } else {
+      setTrueOrFalse(true)
+    }
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header  />
+      <div className="container">
+          <FeedbackList feedback={feedback} display={trueOrFalse} />
+          <button className="btn btn-secondary" onClick={handleClick}>Click</button>
+      </div>
+      
+    </>
   );
 }
-
-export default App;
