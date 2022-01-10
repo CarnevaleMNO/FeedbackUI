@@ -9,6 +9,7 @@ import FeedbackForm from "./components/FeedbackForm";
 import AboutIcon from "./components/AboutIcon";
 import About from "./components/pages/About";
 import Button from "./components/shared/Button";
+import FeedbackProvider from "./context/FeedbackContext";
 
 export default function App() {
   const [feedback, setFeedback] = useState(FeedbackData);
@@ -34,6 +35,7 @@ export default function App() {
   };
 
   return (
+    <FeedbackProvider>
     <Router>
       <Header />
       <div className="container">
@@ -44,9 +46,8 @@ export default function App() {
             element={
               <>
                 <FeedbackForm handleAdd={addFeedback} />
-                <FeedbackStats feedback={feedback} />
+                <FeedbackStats />
                 <FeedbackList
-                  feedback={feedback}
                   display={trueOrFalse}
                   handleDelete={deleteFeedback}
                 />
@@ -63,5 +64,6 @@ export default function App() {
         <AboutIcon />
       </div>
     </Router>
+    </FeedbackProvider>
   );
 }

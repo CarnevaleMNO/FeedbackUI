@@ -1,4 +1,9 @@
-export default function FeedbackStats({feedback}) {
+import {useContext} from 'react';
+import {FeedbackContext} from "../context/FeedbackContext";
+
+export default function FeedbackStats() {
+    const {feedback} = useContext(FeedbackContext);
+
     //Calculate ratings avg
     let average = feedback.reduce((acc, curr) => {
         return acc + curr.rating
@@ -8,7 +13,7 @@ export default function FeedbackStats({feedback}) {
 
     return (
         <div className="feedback-stats">
-            <h4>{feedback.length} Reviews</h4>
+            <h4>{feedback.length === 1 ? `${feedback.length} review` : `${feedback.length} reviews` }</h4>
             <h4>Average Rating: {isNaN(average) ? "N/A" : average}</h4>
         </div>
     )
