@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import Header from "./components/Header";
-import FeedbackData from "./data/FeedbackData";
 import FeedbackList from "./components/FeedbackList";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackForm from "./components/FeedbackForm";
@@ -12,7 +10,6 @@ import Button from "./components/shared/Button";
 import FeedbackProvider from "./context/FeedbackContext";
 
 export default function App() {
-  const [feedback, setFeedback] = useState(FeedbackData);
   const [trueOrFalse, setTrueOrFalse] = useState(true);
 
   const handleClick = () => {
@@ -20,17 +17,6 @@ export default function App() {
       setTrueOrFalse(false);
     } else {
       setTrueOrFalse(true);
-    }
-  };
-
-  const addFeedback = (newFeedback) => {
-    newFeedback.id = uuidv4();
-    setFeedback([newFeedback, ...feedback]);
-  };
-
-  const deleteFeedback = (id) => {
-    if (window.confirm("Are you sure you want to delete")) {
-      setFeedback(feedback.filter((item) => item.id !== id));
     }
   };
 
@@ -45,11 +31,10 @@ export default function App() {
             path="/"
             element={
               <>
-                <FeedbackForm handleAdd={addFeedback} />
+                <FeedbackForm />
                 <FeedbackStats />
                 <FeedbackList
                   display={trueOrFalse}
-                  handleDelete={deleteFeedback}
                 />
                 <Button version="secondary" func={handleClick}>
                   Click
