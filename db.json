@@ -1,0 +1,24 @@
+{
+  "feedback": [
+    {
+      "id": 1,
+      "rating": 10,
+      "text": "This is America, coming from the db"
+    },
+    {
+      "id": 2,
+      "rating": 9,
+      "text": "This is Japan, coming from the db"
+    },
+    {
+      "id": 3,
+      "rating": 8,
+      "text": "This is Canada, coming from the db"
+    },
+    {
+      "text": "This is Totsuka, coming from the UI",
+      "rating": 9,
+      "id": 4
+    }
+  ]
+}
